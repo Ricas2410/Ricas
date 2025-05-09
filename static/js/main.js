@@ -62,12 +62,77 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Testimonial carousel
-    const testimonialCarousel = document.querySelector('#testimonialCarousel');
-    if (testimonialCarousel) {
-        new bootstrap.Carousel(testimonialCarousel, {
+    // Testimonial carousels
+    const testimonialCarouselMobile = document.querySelector('#testimonialCarouselMobile');
+    if (testimonialCarouselMobile) {
+        new bootstrap.Carousel(testimonialCarouselMobile, {
             interval: 5000,
             wrap: true
+        });
+    }
+
+    // Show More Testimonials button
+    const showMoreTestimonialsBtn = document.querySelector('#showMoreTestimonials');
+    if (showMoreTestimonialsBtn) {
+        showMoreTestimonialsBtn.addEventListener('click', function() {
+            // Create a modal with all testimonials in a carousel
+            const modal = document.createElement('div');
+            modal.classList.add('modal', 'fade');
+            modal.id = 'allTestimonialsModal';
+            modal.setAttribute('tabindex', '-1');
+            modal.setAttribute('aria-labelledby', 'allTestimonialsModalLabel');
+            modal.setAttribute('aria-hidden', 'true');
+
+            // Get all testimonials
+            const testimonials = document.querySelectorAll('.testimonial');
+
+            // Create modal content
+            modal.innerHTML = `
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="allTestimonialsModalLabel">All Testimonials</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="allTestimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    ${Array.from(testimonials).map((testimonial, index) => {
+                                        const clone = testimonial.cloneNode(true);
+                                        return `
+                                            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                                <div class="p-3">
+                                                    ${clone.outerHTML}
+                                                </div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#allTestimonialsCarousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#allTestimonialsCarousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Add modal to body
+            document.body.appendChild(modal);
+
+            // Initialize and show modal
+            const modalInstance = new bootstrap.Modal(modal);
+            modalInstance.show();
+
+            // Clean up when modal is hidden
+            modal.addEventListener('hidden.bs.modal', function() {
+                document.body.removeChild(modal);
+            });
         });
     }
 

@@ -32,14 +32,14 @@
 
         <div class="row" id="portfolio-grid">
             {% for project in projects %}
-            <div class="col-lg-4 col-md-6 mb-4 portfolio-item" data-category="{{ project.category }}">
-                <div class="card h-100 border-0 shadow-sm" style="border-top: 4px solid var(--primary-color);">
+            <div class="col-lg-4 col-md-6 mb-3 portfolio-item" data-category="{{ project.category }}">
+                <div class="card h-100 border-0 shadow-sm" style="border-top: 3px solid var(--primary-color);">
                     <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" onerror="this.src='https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'">
                     <div class="card-body">
-                        <h5 class="card-title" style="color: var(--primary-color);">{{ project.title }}</h5>
-                        <p class="card-text text-muted mb-2">{{ project.get_category_display }} | {{ project.client }}</p>
-                        <p class="card-text">{{ project.description|truncatewords:20 }}</p>
-                        <a href="{% url 'project_detail' project.slug %}" class="btn btn-primary w-100">View Project</a>
+                        <h5 class="card-title" style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.5rem;">{{ project.title }}</h5>
+                        <p class="card-text text-muted mb-2" style="font-size: 0.9rem;">{{ project.get_category_display }} | {{ project.client }}</p>
+                        <p class="card-text" style="font-size: 0.95rem; line-height: 1.5;">{{ project.description|truncatewords:15 }}</p>
+                        <a href="{% url 'project_detail' project.slug %}" class="btn btn-primary btn-sm w-100">View Project</a>
                     </div>
                 </div>
             </div>
@@ -61,46 +61,46 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-3">
                 <div class="testimonial h-100">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="testimonial-img d-flex align-items-center justify-content-center text-white" style="background-color: var(--primary-color);">
-                            <span class="fs-1">J</span>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="testimonial-img d-flex align-items-center justify-content-center text-white" style="background-color: var(--primary-color); width: 60px; height: 60px;">
+                            <span class="fs-3">J</span>
                         </div>
                         <div>
-                            <h5 class="mb-0" style="color: var(--primary-color);">John Smith</h5>
-                            <p class="text-muted mb-0">CEO, Tech Solutions Inc.</p>
+                            <h5 class="mb-0" style="color: var(--primary-color); font-size: 1.1rem;">John Smith</h5>
+                            <p class="text-muted mb-0" style="font-size: 0.9rem;">CEO, Tech Solutions Inc.</p>
                         </div>
                     </div>
-                    <p class="mb-0">"Ricas IT Services delivered our web application on time and within budget. Their team was professional, responsive, and truly understood our business needs. We're already planning our next project with them."</p>
+                    <p class="mb-0" style="font-size: 0.95rem; line-height: 1.6;">"Ricas IT Services delivered our web application on time and within budget. Their team was professional, responsive, and truly understood our business needs. We're already planning our next project with them."</p>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-3">
                 <div class="testimonial h-100">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="testimonial-img d-flex align-items-center justify-content-center text-white" style="background-color: var(--primary-color);">
-                            <span class="fs-1">S</span>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="testimonial-img d-flex align-items-center justify-content-center text-white" style="background-color: var(--primary-color); width: 60px; height: 60px;">
+                            <span class="fs-3">S</span>
                         </div>
                         <div>
-                            <h5 class="mb-0" style="color: var(--primary-color);">Sarah Johnson</h5>
-                            <p class="text-muted mb-0">Principal, Johnson Academy</p>
+                            <h5 class="mb-0" style="color: var(--primary-color); font-size: 1.1rem;">Sarah Johnson</h5>
+                            <p class="text-muted mb-0" style="font-size: 0.9rem;">Principal, Johnson Academy</p>
                         </div>
                     </div>
-                    <p class="mb-0">"The school management system developed by Ricas IT Services has transformed how we operate. Our administrative tasks are now streamlined, and our teachers can focus more on teaching. Highly recommended!"</p>
+                    <p class="mb-0" style="font-size: 0.95rem; line-height: 1.6;">"The school management system developed by Ricas IT Services has transformed how we operate. Our administrative tasks are now streamlined, and our teachers can focus more on teaching. Highly recommended!"</p>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-3">
                 <div class="testimonial h-100">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="testimonial-img d-flex align-items-center justify-content-center text-white" style="background-color: var(--primary-color);">
-                            <span class="fs-1">M</span>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="testimonial-img d-flex align-items-center justify-content-center text-white" style="background-color: var(--primary-color); width: 60px; height: 60px;">
+                            <span class="fs-3">M</span>
                         </div>
                         <div>
-                            <h5 class="mb-0" style="color: var(--primary-color);">Michael Brown</h5>
-                            <p class="text-muted mb-0">Owner, Brown's Boutique</p>
+                            <h5 class="mb-0" style="color: var(--primary-color); font-size: 1.1rem;">Michael Brown</h5>
+                            <p class="text-muted mb-0" style="font-size: 0.9rem;">Owner, Brown's Boutique</p>
                         </div>
                     </div>
-                    <p class="mb-0">"Our e-commerce website has seen a 40% increase in sales since Ricas IT Services redesigned it. The mobile-friendly design and improved checkout process have made a significant difference to our business."</p>
+                    <p class="mb-0" style="font-size: 0.95rem; line-height: 1.6;">"Our e-commerce website has seen a 40% increase in sales since Ricas IT Services redesigned it. The mobile-friendly design and improved checkout process have made a significant difference to our business."</p>
                 </div>
             </div>
         </div>

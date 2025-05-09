@@ -322,7 +322,7 @@
 
         <div class="row">
             {% for category in computer_categories %}
-            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
                 <div class="card h-100">
                     <div class="position-relative">
                         {% if category.image %}
@@ -352,7 +352,7 @@
             {% endfor %}
 
             {% for service in network_services %}
-            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="card h-100">
                     <div class="position-relative">
                         {% if service.image %}
@@ -485,9 +485,46 @@
             <p class="lead">{% if home_settings %}{{ home_settings.testimonial_subtitle }}{% else %}Testimonials from our satisfied clients{% endif %}</p>
         </div>
 
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Desktop View (3-4 testimonials per row) -->
+        <div class="row d-none d-md-flex">
+            {% for testimonial in testimonials %}
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+                    <div class="testimonial h-100">
+                        <div class="mb-3 text-center">
+                            <i class="fas fa-quote-left fa-2x text-accent opacity-25"></i>
+                        </div>
+                        <p class="testimonial-content mb-4">{{ testimonial.content }}</p>
+                        <div class="d-flex align-items-center mt-auto">
+                            {% if testimonial.image %}
+                                <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}" class="testimonial-img">
+                            {% else %}
+                                <div class="testimonial-img d-flex align-items-center justify-content-center text-white" style="background-color: var(--primary-color);">
+                                    <span class="fs-3">{{ testimonial.name|first }}</span>
+                                </div>
+                            {% endif %}
+                            <div class="ms-3">
+                                <h5 class="mb-0">{{ testimonial.name }}</h5>
+                                <p class="text-muted mb-0">{{ testimonial.position }}{% if testimonial.company %}, {{ testimonial.company }}{% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 and not forloop.last and testimonials.count > 3 %}
+                    </div><div class="row d-none d-md-flex">
+                {% endif %}
+            {% empty %}
+                <div class="col-12 text-center">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i> No testimonials available at the moment.
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Mobile View (Carousel) -->
+        <div class="row d-md-none">
+            <div class="col-12">
+                <div id="testimonialCarouselMobile" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         {% for testimonial in testimonials %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}" data-aos="fade-up" data-aos-delay="100">
@@ -500,7 +537,9 @@
                                         {% if testimonial.image %}
                                             <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}" class="testimonial-img">
                                         {% else %}
-                                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="{{ testimonial.name }}" class="testimonial-img" onerror="this.src='https://via.placeholder.com/80x80?text={{ testimonial.name|first }}'">
+                                            <div class="testimonial-img d-flex align-items-center justify-content-center text-white" style="background-color: var(--primary-color);">
+                                                <span class="fs-3">{{ testimonial.name|first }}</span>
+                                            </div>
                                         {% endif %}
                                         <div class="ms-3 text-start">
                                             <h5 class="mb-0">{{ testimonial.name }}</h5>
@@ -520,23 +559,34 @@
                         {% endfor %}
                     </div>
                     {% if testimonials.count > 1 %}
-                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarouselMobile" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarouselMobile" data-bs-slide="next">
                             <span class="carousel-control-next-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                         <div class="carousel-indicators position-relative mt-4">
                             {% for testimonial in testimonials %}
-                                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+                                <button type="button" data-bs-target="#testimonialCarouselMobile" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
                             {% endfor %}
                         </div>
                     {% endif %}
                 </div>
             </div>
         </div>
+
+        <!-- Desktop Carousel for when there are more than 6 testimonials -->
+        {% if testimonials.count > 6 %}
+        <div class="row d-none d-md-block mt-4">
+            <div class="col-12 text-center">
+                <button id="showMoreTestimonials" class="btn btn-outline-primary">
+                    <i class="fas fa-chevron-down me-2"></i>Show More Testimonials
+                </button>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </section>
 

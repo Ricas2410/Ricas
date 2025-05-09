@@ -46,17 +46,17 @@
 
         <div class="row">
             {% for service in services %}
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-4 col-md-6 mb-3">
                 <div class="card h-100 border-0 shadow-sm">
                     <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}" onerror="this.src='https://via.placeholder.com/400x200?text={{ service.title }}'">
                     <div class="card-body">
-                        <h5 class="card-title">{{ service.title }}</h5>
-                        <p class="card-text">{{ service.description|truncatewords:25 }}</p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title" style="font-size: 1.1rem; margin-bottom: 0.5rem;">{{ service.title }}</h5>
+                        <p class="card-text" style="font-size: 0.95rem; line-height: 1.5;">{{ service.description|truncatewords:20 }}</p>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
                             <span class="badge bg-primary">{{ service.get_age_group_display }}</span>
                             <span class="badge bg-secondary">{{ service.get_format_display }}</span>
                         </div>
-                        <a href="{% url 'education_service_detail' service.slug %}" class="btn btn-primary w-100">Learn More</a>
+                        <a href="{% url 'education_service_detail' service.slug %}" class="btn btn-primary btn-sm w-100">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -78,36 +78,36 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
-                    <div class="card-body p-4">
-                        <div class="service-icon">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 3px solid var(--primary-color);">
+                    <div class="card-body p-3">
+                        <div class="service-icon" style="width: 70px; height: 70px; line-height: 70px; margin-bottom: 0.75rem;">
                             <i class="fas fa-child"></i>
                         </div>
-                        <h3 style="color: var(--primary-color);">Kids (6-12)</h3>
-                        <p>Fun, interactive programs that introduce children to technology through games, animations, and creative projects. We focus on building foundational skills while fostering curiosity and creativity.</p>
+                        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-bottom: 0.75rem;">Kids (6-12)</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">Fun, interactive programs that introduce children to technology through games, animations, and creative projects. We focus on building foundational skills while fostering curiosity and creativity.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
-                    <div class="card-body p-4">
-                        <div class="service-icon">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 3px solid var(--primary-color);">
+                    <div class="card-body p-3">
+                        <div class="service-icon" style="width: 70px; height: 70px; line-height: 70px; margin-bottom: 0.75rem;">
                             <i class="fas fa-user-graduate"></i>
                         </div>
-                        <h3 style="color: var(--primary-color);">Teens (13-17)</h3>
-                        <p>More advanced programs that help teenagers develop practical skills in web design, programming, and digital media. Our courses prepare teens for academic success and future career opportunities.</p>
+                        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-bottom: 0.75rem;">Teens (13-17)</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">More advanced programs that help teenagers develop practical skills in web design, programming, and digital media. Our courses prepare teens for academic success and future career opportunities.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
-                    <div class="card-body p-4">
-                        <div class="service-icon">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 3px solid var(--primary-color);">
+                    <div class="card-body p-3">
+                        <div class="service-icon" style="width: 70px; height: 70px; line-height: 70px; margin-bottom: 0.75rem;">
                             <i class="fas fa-user-tie"></i>
                         </div>
-                        <h3 style="color: var(--primary-color);">Adults (18+)</h3>
-                        <p>Professional development courses designed to enhance career prospects or help adults transition to technology-related fields. We offer flexible scheduling to accommodate work and family commitments.</p>
+                        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-bottom: 0.75rem;">Adults (18+)</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">Professional development courses designed to enhance career prospects or help adults transition to technology-related fields. We offer flexible scheduling to accommodate work and family commitments.</p>
                     </div>
                 </div>
             </div>
@@ -124,69 +124,69 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-3">
                 <div class="d-flex">
                     <div class="flex-shrink-0">
                         <i class="fas fa-hands-on fa-2x me-3" style="color: var(--accent-color);"></i>
                     </div>
                     <div>
-                        <h4>Hands-on Learning</h4>
-                        <p>Our courses emphasize practical, hands-on experience with real-world applications, not just theory.</p>
+                        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Hands-on Learning</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">Our courses emphasize practical, hands-on experience with real-world applications, not just theory.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-3">
                 <div class="d-flex">
                     <div class="flex-shrink-0">
                         <i class="fas fa-users fa-2x me-3" style="color: var(--accent-color);"></i>
                     </div>
                     <div>
-                        <h4>Small Class Sizes</h4>
-                        <p>We maintain small class sizes to ensure personalized attention and support for each student.</p>
+                        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Small Class Sizes</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">We maintain small class sizes to ensure personalized attention and support for each student.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-3">
                 <div class="d-flex">
                     <div class="flex-shrink-0">
                         <i class="fas fa-laptop-code fa-2x me-3" style="color: var(--accent-color);"></i>
                     </div>
                     <div>
-                        <h4>Industry-Relevant Skills</h4>
-                        <p>Our curriculum is regularly updated to reflect current industry trends and technologies.</p>
+                        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Industry-Relevant Skills</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">Our curriculum is regularly updated to reflect current industry trends and technologies.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-3">
                 <div class="d-flex">
                     <div class="flex-shrink-0">
                         <i class="fas fa-certificate fa-2x me-3" style="color: var(--accent-color);"></i>
                     </div>
                     <div>
-                        <h4>Qualified Instructors</h4>
-                        <p>Our instructors are experienced professionals with both teaching skills and practical industry experience.</p>
+                        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Qualified Instructors</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">Our instructors are experienced professionals with both teaching skills and practical industry experience.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-3">
                 <div class="d-flex">
                     <div class="flex-shrink-0">
                         <i class="fas fa-clock fa-2x me-3" style="color: var(--accent-color);"></i>
                     </div>
                     <div>
-                        <h4>Flexible Scheduling</h4>
-                        <p>We offer various scheduling options to accommodate different availability and learning preferences.</p>
+                        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Flexible Scheduling</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">We offer various scheduling options to accommodate different availability and learning preferences.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-3">
                 <div class="d-flex">
                     <div class="flex-shrink-0">
                         <i class="fas fa-project-diagram fa-2x me-3" style="color: var(--accent-color);"></i>
                     </div>
                     <div>
-                        <h4>Project-Based Learning</h4>
-                        <p>Students complete real projects that can be added to their portfolios for academic or professional purposes.</p>
+                        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Project-Based Learning</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">Students complete real projects that can be added to their portfolios for academic or professional purposes.</p>
                     </div>
                 </div>
             </div>

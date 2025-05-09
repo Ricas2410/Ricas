@@ -46,14 +46,14 @@
 
         <div class="row">
             {% for service in services %}
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-4 col-md-6 mb-3">
                 <div class="card h-100 border-0 shadow-sm">
                     <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}" onerror="this.src='https://via.placeholder.com/400x200?text={{ service.title }}'">
                     <div class="card-body">
-                        <h5 class="card-title">{{ service.title }}</h5>
-                        <p class="card-text">{{ service.description|truncatewords:25 }}</p>
-                        <p class="card-text"><small class="text-muted">Technologies: {{ service.technologies }}</small></p>
-                        <a href="{% url 'development_service_detail' service.slug %}" class="btn btn-primary w-100">Learn More</a>
+                        <h5 class="card-title" style="font-size: 1.1rem; margin-bottom: 0.5rem;">{{ service.title }}</h5>
+                        <p class="card-text" style="font-size: 0.95rem; line-height: 1.5;">{{ service.description|truncatewords:20 }}</p>
+                        <p class="card-text mb-2"><small class="text-muted" style="font-size: 0.85rem;">Technologies: {{ service.technologies }}</small></p>
+                        <a href="{% url 'development_service_detail' service.slug %}" class="btn btn-primary btn-sm w-100">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -75,69 +75,69 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
-                    <div class="card-body p-4">
-                        <div class="service-icon">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 3px solid var(--primary-color);">
+                    <div class="card-body p-3">
+                        <div class="service-icon" style="width: 70px; height: 70px; line-height: 70px; margin-bottom: 0.75rem;">
                             <i class="fas fa-lightbulb"></i>
                         </div>
-                        <h3 style="color: var(--primary-color);">1. Discovery & Planning</h3>
-                        <p>We start by understanding your business needs, goals, and challenges. We then create a detailed project plan that outlines scope, timeline, and deliverables.</p>
+                        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-bottom: 0.75rem;">1. Discovery & Planning</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">We start by understanding your business needs, goals, and challenges. We then create a detailed project plan that outlines scope, timeline, and deliverables.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
-                    <div class="card-body p-4">
-                        <div class="service-icon">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 3px solid var(--primary-color);">
+                    <div class="card-body p-3">
+                        <div class="service-icon" style="width: 70px; height: 70px; line-height: 70px; margin-bottom: 0.75rem;">
                             <i class="fas fa-pencil-ruler"></i>
                         </div>
-                        <h3 style="color: var(--primary-color);">2. Design & Architecture</h3>
-                        <p>We design the user interface and experience, and develop the technical architecture that will support your application's functionality and performance requirements.</p>
+                        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-bottom: 0.75rem;">2. Design & Architecture</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">We design the user interface and experience, and develop the technical architecture that will support your application's functionality and performance requirements.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
-                    <div class="card-body p-4">
-                        <div class="service-icon">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 3px solid var(--primary-color);">
+                    <div class="card-body p-3">
+                        <div class="service-icon" style="width: 70px; height: 70px; line-height: 70px; margin-bottom: 0.75rem;">
                             <i class="fas fa-code"></i>
                         </div>
-                        <h3 style="color: var(--primary-color);">3. Development</h3>
-                        <p>Our developers write clean, efficient code following industry best practices. We use agile methodologies to ensure regular progress and flexibility to changing requirements.</p>
+                        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-bottom: 0.75rem;">3. Development</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">Our developers write clean, efficient code following industry best practices. We use agile methodologies to ensure regular progress and flexibility to changing requirements.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
-                    <div class="card-body p-4">
-                        <div class="service-icon">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 3px solid var(--primary-color);">
+                    <div class="card-body p-3">
+                        <div class="service-icon" style="width: 70px; height: 70px; line-height: 70px; margin-bottom: 0.75rem;">
                             <i class="fas fa-vial"></i>
                         </div>
-                        <h3 style="color: var(--primary-color);">4. Testing & QA</h3>
-                        <p>We rigorously test all aspects of your application to ensure functionality, performance, security, and usability meet the highest standards.</p>
+                        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-bottom: 0.75rem;">4. Testing & QA</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">We rigorously test all aspects of your application to ensure functionality, performance, security, and usability meet the highest standards.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
-                    <div class="card-body p-4">
-                        <div class="service-icon">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 3px solid var(--primary-color);">
+                    <div class="card-body p-3">
+                        <div class="service-icon" style="width: 70px; height: 70px; line-height: 70px; margin-bottom: 0.75rem;">
                             <i class="fas fa-rocket"></i>
                         </div>
-                        <h3 style="color: var(--primary-color);">5. Deployment</h3>
-                        <p>We handle the deployment process, ensuring your application is properly set up in its production environment and ready for use.</p>
+                        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-bottom: 0.75rem;">5. Deployment</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">We handle the deployment process, ensuring your application is properly set up in its production environment and ready for use.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
-                    <div class="card-body p-4">
-                        <div class="service-icon">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 3px solid var(--primary-color);">
+                    <div class="card-body p-3">
+                        <div class="service-icon" style="width: 70px; height: 70px; line-height: 70px; margin-bottom: 0.75rem;">
                             <i class="fas fa-cogs"></i>
                         </div>
-                        <h3 style="color: var(--primary-color);">6. Maintenance & Support</h3>
-                        <p>We provide ongoing maintenance and support to ensure your application continues to run smoothly and can be enhanced with new features as needed.</p>
+                        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-bottom: 0.75rem;">6. Maintenance & Support</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5;">We provide ongoing maintenance and support to ensure your application continues to run smoothly and can be enhanced with new features as needed.</p>
                     </div>
                 </div>
             </div>
@@ -154,52 +154,52 @@
         </div>
 
         <div class="row text-center">
-            <div class="col-md-3 col-6 mb-4">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <i class="fab fa-python fa-3x mb-3" style="color: var(--primary-color);"></i>
-                    <h5>Python/Django</h5>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-2 bg-white rounded shadow-sm">
+                    <i class="fab fa-python fa-2x mb-2" style="color: var(--primary-color);"></i>
+                    <h5 style="font-size: 1rem; margin-bottom: 0.5rem;">Python/Django</h5>
                 </div>
             </div>
-            <div class="col-md-3 col-6 mb-4">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <i class="fab fa-php fa-3x mb-3" style="color: var(--primary-color);"></i>
-                    <h5>PHP/Laravel</h5>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-2 bg-white rounded shadow-sm">
+                    <i class="fab fa-php fa-2x mb-2" style="color: var(--primary-color);"></i>
+                    <h5 style="font-size: 1rem; margin-bottom: 0.5rem;">PHP/Laravel</h5>
                 </div>
             </div>
-            <div class="col-md-3 col-6 mb-4">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <i class="fab fa-js fa-3x mb-3" style="color: var(--primary-color);"></i>
-                    <h5>JavaScript/Node.js</h5>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-2 bg-white rounded shadow-sm">
+                    <i class="fab fa-js fa-2x mb-2" style="color: var(--primary-color);"></i>
+                    <h5 style="font-size: 1rem; margin-bottom: 0.5rem;">JavaScript/Node.js</h5>
                 </div>
             </div>
-            <div class="col-md-3 col-6 mb-4">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <i class="fab fa-react fa-3x mb-3" style="color: var(--primary-color);"></i>
-                    <h5>React/React Native</h5>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-2 bg-white rounded shadow-sm">
+                    <i class="fab fa-react fa-2x mb-2" style="color: var(--primary-color);"></i>
+                    <h5 style="font-size: 1rem; margin-bottom: 0.5rem;">React/React Native</h5>
                 </div>
             </div>
-            <div class="col-md-3 col-6 mb-4">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <i class="fab fa-angular fa-3x mb-3" style="color: var(--primary-color);"></i>
-                    <h5>Angular</h5>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-2 bg-white rounded shadow-sm">
+                    <i class="fab fa-angular fa-2x mb-2" style="color: var(--primary-color);"></i>
+                    <h5 style="font-size: 1rem; margin-bottom: 0.5rem;">Angular</h5>
                 </div>
             </div>
-            <div class="col-md-3 col-6 mb-4">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <i class="fab fa-vuejs fa-3x mb-3" style="color: var(--primary-color);"></i>
-                    <h5>Vue.js</h5>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-2 bg-white rounded shadow-sm">
+                    <i class="fab fa-vuejs fa-2x mb-2" style="color: var(--primary-color);"></i>
+                    <h5 style="font-size: 1rem; margin-bottom: 0.5rem;">Vue.js</h5>
                 </div>
             </div>
-            <div class="col-md-3 col-6 mb-4">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <i class="fas fa-database fa-3x mb-3" style="color: var(--primary-color);"></i>
-                    <h5>MySQL/PostgreSQL</h5>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-2 bg-white rounded shadow-sm">
+                    <i class="fas fa-database fa-2x mb-2" style="color: var(--primary-color);"></i>
+                    <h5 style="font-size: 1rem; margin-bottom: 0.5rem;">MySQL/PostgreSQL</h5>
                 </div>
             </div>
-            <div class="col-md-3 col-6 mb-4">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <i class="fab fa-aws fa-3x mb-3" style="color: var(--primary-color);"></i>
-                    <h5>AWS/Cloud Services</h5>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-2 bg-white rounded shadow-sm">
+                    <i class="fab fa-aws fa-2x mb-2" style="color: var(--primary-color);"></i>
+                    <h5 style="font-size: 1rem; margin-bottom: 0.5rem;">AWS/Cloud Services</h5>
                 </div>
             </div>
         </div>
