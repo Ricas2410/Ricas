@@ -183,7 +183,7 @@
                     <div class="position-relative">
                         <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}"
                              onerror="this.src='https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1122&q=80'">
-                        <span class="position-absolute top-0 end-0 bg-accent text-white px-3 py-2 m-3 rounded-pill">
+                        <span class="position-absolute top-0 end-0 px-3 py-2 m-3 rounded-pill" style="background-color: rgba(0, 0, 0, 0.75); color: #FFD700; font-weight: bold; font-size: 1.1rem;">
                             {{ service.get_age_group_display }}
                         </span>
                     </div>
@@ -191,7 +191,7 @@
                         <h5 class="card-title">{{ service.title }}</h5>
                         <p class="card-text text-muted">{{ service.description|truncatewords:15 }}</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="badge bg-light text-primary">{{ service.get_format_display }}</span>
+                            <span class="badge" style="background-color: #103a8f; color: white; font-size: 0.9rem;">{{ service.get_format_display }}</span>
                             <a href="{% url 'education_service_detail' service.slug %}" class="btn btn-sm btn-outline-primary">
                                 Learn More <i class="fas fa-arrow-right ms-1"></i>
                             </a>

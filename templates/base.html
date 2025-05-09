@@ -60,11 +60,6 @@
                             <i class="fas fa-home me-1"></i> <span class="nav-link-inner">Home</span>
                         </a>
                     </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link {% if request.path == '/about/' %}active fw-bold{% endif %}" href="{% url 'about' %}">
-                            <i class="fas fa-info-circle me-1"></i> <span class="nav-link-inner">About Us</span>
-                        </a>
-                    </li>
                     <li class="nav-item dropdown mx-2">
                         <a class="nav-link dropdown-toggle {% if '/education/' in request.path or '/development/' in request.path or '/cybersecurity/' in request.path or '/computers/' in request.path %}active fw-bold{% endif %}" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-concierge-bell me-1"></i> <span class="nav-link-inner">Our Services</span>
@@ -92,6 +87,11 @@
                             </a></li>
                             {% endif %}
                         </ul>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link {% if request.path == '/about/' %}active fw-bold{% endif %}" href="{% url 'about' %}">
+                            <i class="fas fa-info-circle me-1"></i> <span class="nav-link-inner">About Us</span>
+                        </a>
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link {% if '/portfolio/' in request.path %}active fw-bold{% endif %}" href="{% url 'portfolio' %}">
@@ -160,9 +160,9 @@
                     <h5 class="text-white">Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="{% url 'home' %}" class="text-light"><i class="fas fa-home me-2" style="color: var(--primary-color);"></i>Home</a></li>
-                        <li><a href="{% url 'about' %}" class="text-light"><i class="fas fa-info-circle me-2" style="color: var(--primary-color);"></i>About Us</a></li>
                         <li><a href="{% url 'education_services' %}" class="text-light"><i class="fas fa-graduation-cap me-2" style="color: var(--primary-color);"></i>ICT Education</a></li>
                         <li><a href="{% url 'development_services' %}" class="text-light"><i class="fas fa-code me-2" style="color: var(--primary-color);"></i>Software Development</a></li>
+                        <li><a href="{% url 'about' %}" class="text-light"><i class="fas fa-info-circle me-2" style="color: var(--primary-color);"></i>About Us</a></li>
                         <li><a href="{% url 'portfolio' %}" class="text-light"><i class="fas fa-briefcase me-2" style="color: var(--primary-color);"></i>Portfolio</a></li>
                         <li><a href="{% url 'contact' %}" class="text-light"><i class="fas fa-envelope me-2" style="color: var(--primary-color);"></i>Contact</a></li>
                     </ul>
