@@ -57,17 +57,17 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item mx-2">
                         <a class="nav-link {% if request.path == '/' %}active fw-bold{% endif %}" href="{% url 'home' %}">
-                            <span class="nav-link-inner">Home</span>
+                            <i class="fas fa-home me-1"></i> <span class="nav-link-inner">Home</span>
                         </a>
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link {% if request.path == '/about/' %}active fw-bold{% endif %}" href="{% url 'about' %}">
-                            <span class="nav-link-inner">About Us</span>
+                            <i class="fas fa-info-circle me-1"></i> <span class="nav-link-inner">About Us</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown mx-2">
                         <a class="nav-link dropdown-toggle {% if '/education/' in request.path or '/development/' in request.path or '/cybersecurity/' in request.path or '/computers/' in request.path %}active fw-bold{% endif %}" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="nav-link-inner">Our Services</span>
+                            <i class="fas fa-cogs me-1"></i> <span class="nav-link-inner">Our Services</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                             <li><a class="dropdown-item {% if '/education/' in request.path %}active{% endif %}" href="{% url 'education_services' %}">
@@ -95,11 +95,13 @@
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link {% if '/portfolio/' in request.path %}active fw-bold{% endif %}" href="{% url 'portfolio' %}">
-                            <span class="nav-link-inner">Portfolio</span>
+                            <i class="fas fa-briefcase me-1"></i> <span class="nav-link-inner">Portfolio</span>
                         </a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="btn rounded-pill px-4 py-2" href="{% url 'contact' %}" style="background-color: var(--accent-color); color: white;">Contact Us</a>
+                        <a class="btn rounded-pill px-4 py-2" href="{% url 'contact' %}" style="background-color: var(--accent-color); color: white;">
+                            <i class="fas fa-envelope me-1"></i> Contact Us
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -157,25 +159,25 @@
                 <div class="col-lg-2 col-md-6">
                     <h5 class="text-white">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
-                        <li><a href="{% url 'about' %}" class="text-light">About Us</a></li>
-                        <li><a href="{% url 'education_services' %}" class="text-light">ICT Education</a></li>
-                        <li><a href="{% url 'development_services' %}" class="text-light">Software Development</a></li>
-                        <li><a href="{% url 'portfolio' %}" class="text-light">Portfolio</a></li>
-                        <li><a href="{% url 'contact' %}" class="text-light">Contact</a></li>
+                        <li><a href="{% url 'home' %}" class="text-light"><i class="fas fa-home me-2" style="color: var(--primary-color);"></i>Home</a></li>
+                        <li><a href="{% url 'about' %}" class="text-light"><i class="fas fa-info-circle me-2" style="color: var(--primary-color);"></i>About Us</a></li>
+                        <li><a href="{% url 'education_services' %}" class="text-light"><i class="fas fa-graduation-cap me-2" style="color: var(--primary-color);"></i>ICT Education</a></li>
+                        <li><a href="{% url 'development_services' %}" class="text-light"><i class="fas fa-code me-2" style="color: var(--primary-color);"></i>Software Development</a></li>
+                        <li><a href="{% url 'portfolio' %}" class="text-light"><i class="fas fa-briefcase me-2" style="color: var(--primary-color);"></i>Portfolio</a></li>
+                        <li><a href="{% url 'contact' %}" class="text-light"><i class="fas fa-envelope me-2" style="color: var(--primary-color);"></i>Contact</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-white">Our Services</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'education_services' %}" class="text-light">ICT Education</a></li>
-                        <li><a href="{% url 'development_services' %}" class="text-light">Software Development</a></li>
-                        <li><a href="{% url 'cybersecurity_services' %}" class="text-light">Cybersecurity</a></li>
-                        <li><a href="{% url 'computer_categories' %}" class="text-light">Computer Sales</a></li>
-                        <li><a href="{% url 'network_services' %}" class="text-light">Network Services</a></li>
+                        <li><a href="{% url 'education_services' %}" class="text-light"><i class="fas fa-graduation-cap me-2" style="color: var(--primary-color);"></i>ICT Education</a></li>
+                        <li><a href="{% url 'development_services' %}" class="text-light"><i class="fas fa-code me-2" style="color: var(--primary-color);"></i>Software Development</a></li>
+                        <li><a href="{% url 'cybersecurity_services' %}" class="text-light"><i class="fas fa-shield-alt me-2" style="color: var(--primary-color);"></i>Cybersecurity</a></li>
+                        <li><a href="{% url 'computer_categories' %}" class="text-light"><i class="fas fa-laptop me-2" style="color: var(--primary-color);"></i>Computer Sales</a></li>
+                        <li><a href="{% url 'network_services' %}" class="text-light"><i class="fas fa-network-wired me-2" style="color: var(--primary-color);"></i>Network Services</a></li>
                         {% if site_settings and site_settings.ecommerce_url %}
-                        <li><a href="{% url 'redirect_to_ecommerce' %}" class="text-light" target="_blank">Online Store</a></li>
+                        <li><a href="{% url 'redirect_to_ecommerce' %}" class="text-light" target="_blank"><i class="fas fa-shopping-cart me-2" style="color: var(--accent-color);"></i>Online Store</a></li>
                         {% endif %}
                     </ul>
                 </div>

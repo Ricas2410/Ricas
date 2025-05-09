@@ -57,6 +57,7 @@ Thumbs.db
 *.pem
 *.key
 *.crt
+pythonanywhere_deployment_guide.md
 
 # Backup files
 *.bak
