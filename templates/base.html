@@ -67,7 +67,7 @@
                     </li>
                     <li class="nav-item dropdown mx-2">
                         <a class="nav-link dropdown-toggle {% if '/education/' in request.path or '/development/' in request.path or '/cybersecurity/' in request.path or '/computers/' in request.path %}active fw-bold{% endif %}" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-cogs me-1"></i> <span class="nav-link-inner">Our Services</span>
+                            <i class="fas fa-concierge-bell me-1"></i> <span class="nav-link-inner">Our Services</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                             <li><a class="dropdown-item {% if '/education/' in request.path %}active{% endif %}" href="{% url 'education_services' %}">
