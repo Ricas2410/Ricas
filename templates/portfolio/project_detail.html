@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} - Ricas IT Services Portfolio{% endblock %}
+
+{% block content %}
+<!-- Project Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>{{ project.title }}</h1>
+                <p class="lead">{{ project.get_category_display }} | {{ project.client }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Project Details -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Main Project Image -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" onerror="this.src='https://via.placeholder.com/800x400?text={{ project.title }}'">
+                    <div class="card-body p-4">
+                        <h2 class="card-title mb-4">Project Overview</h2>
+                        <p class="card-text">{{ project.description|linebreaks }}</p>
+                        
+                        <h3 class="mt-5 mb-3">Technologies Used</h3>
+                        <p class="card-text mb-4">{{ project.technologies }}</p>
+                    </div>
+                </div>
+                
+                <!-- Project Gallery -->
+                {% if project.images.all %}
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Project Gallery</h3>
+                        
+                        <div class="row">
+                            {% for image in project.images.all %}
+                            <div class="col-md-4 mb-4">
+                                <a href="{{ image.image.url }}" class="gallery-item" data-lightbox="project-gallery" data-title="{{ image.caption }}">
+                                    <img src="{{ image.image.url }}" alt="{{ image.caption }}" class="img-fluid rounded" onerror="this.src='https://via.placeholder.com/400x300?text=Image'">
+                                </a>
+                                {% if image.caption %}
+                                <p class="text-center mt-2 text-muted">{{ image.caption }}</p>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Project Challenges and Solutions -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Challenges & Solutions</h3>
+                        
+                        <div class="mb-4">
+                            <h5>Challenge 1: Complex User Requirements</h5>
+                            <p>The client had complex and diverse user requirements that needed to be addressed in a user-friendly interface.</p>
+                            <h6 class="text-primary">Our Solution:</h6>
+                            <p>We conducted extensive user research and created detailed user personas to understand the different needs. This informed our design process, resulting in an intuitive interface that accommodated all user types.</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5>Challenge 2: Integration with Legacy Systems</h5>
+                            <p>The new solution needed to integrate with existing legacy systems without disrupting ongoing operations.</p>
+                            <h6 class="text-primary">Our Solution:</h6>
+                            <p>We developed custom APIs and middleware to facilitate seamless communication between the new application and legacy systems, ensuring data consistency and operational continuity.</p>
+                        </div>
+                        
+                        <div>
+                            <h5>Challenge 3: Performance at Scale</h5>
+                            <p>The application needed to handle a large number of concurrent users without performance degradation.</p>
+                            <h6 class="text-primary">Our Solution:</h6>
+                            <p>We implemented caching strategies, database optimization, and load balancing to ensure the application could scale efficiently and maintain high performance under heavy load.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Client Testimonial -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Client Testimonial</h3>
+                        
+                        <div class="testimonial">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="testimonial-img bg-primary d-flex align-items-center justify-content-center text-white">
+                                    <span class="fs-1">{{ project.client|first }}</span>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">{{ project.client }}</h5>
+                                </div>
+                            </div>
+                            <p class="mb-0">"Working with Ricas IT Services on this project was a fantastic experience. They truly understood our business needs and delivered a solution that exceeded our expectations. The team was professional, responsive, and committed to our success."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Project Details Sidebar -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Project Details</h3>
+                        
+                        <div class="mb-3">
+                            <h5><i class="fas fa-user me-2 text-primary"></i> Client</h5>
+                            <p>{{ project.client }}</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h5><i class="fas fa-folder me-2 text-primary"></i> Category</h5>
+                            <p>{{ project.get_category_display }}</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h5><i class="fas fa-calendar-alt me-2 text-primary"></i> Completion Date</h5>
+                            <p>{{ project.completion_date }}</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h5><i class="fas fa-code me-2 text-primary"></i> Technologies</h5>
+                            <p>{{ project.technologies }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Similar Projects -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Similar Projects</h3>
+                        
+                        {% for similar_project in project.project_set.all|slice:":3" %}
+                            {% if similar_project.id != project.id %}
+                            <div class="mb-3">
+                                <div class="row g-0">
+                                    <div class="col-4">
+                                        <img src="{{ similar_project.image.url }}" alt="{{ similar_project.title }}" class="img-fluid rounded" onerror="this.src='https://via.placeholder.com/100x100?text={{ similar_project.title|first }}'">
+                                    </div>
+                                    <div class="col-8 ps-3">
+                                        <h6 class="mb-1">{{ similar_project.title }}</h6>
+                                        <p class="text-muted small mb-1">{{ similar_project.get_category_display }}</p>
+                                        <a href="{% url 'project_detail' similar_project.slug %}" class="btn btn-sm btn-outline-primary">View Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% empty %}
+                            <p>No similar projects available.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <!-- Contact CTA -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Interested in a Similar Project?</h3>
+                        <p>Contact us to discuss how we can help you with your project needs.</p>
+                        <div class="d-grid">
+                            <a href="{% url 'contact' %}?service_type=development" class="btn btn-primary">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- More Projects -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">More Projects</h2>
+        
+        <div class="row">
+            {% for other_project in project.project_set.all|slice:":3" %}
+                {% if other_project.id != project.id %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="{{ other_project.image.url }}" class="card-img-top" alt="{{ other_project.title }}" onerror="this.src='https://via.placeholder.com/400x200?text={{ other_project.title }}'">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ other_project.title }}</h5>
+                            <p class="card-text text-muted mb-2">{{ other_project.get_category_display }} | {{ other_project.client }}</p>
+                            <p class="card-text">{{ other_project.description|truncatewords:15 }}</p>
+                            <a href="{% url 'project_detail' other_project.slug %}" class="btn btn-outline-primary w-100">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'portfolio' %}" class="btn btn-primary">View All Projects</a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Start Your Project?</h2>
+        <p class="lead mb-4">Contact us today to discuss how we can help bring your ideas to life.</p>
+        <a href="{% url 'contact' %}" class="btn btn-light btn-lg">Contact Us</a>
+    </div>
+</section>
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+{% endblock %}
+{% endblock %}

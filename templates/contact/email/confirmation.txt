@@ -1,0 +1,29 @@
+Thank You for Contacting {{ site_name }}
+
+Dear {{ name }},
+
+Thank you for reaching out to us at {{ site_name }}. We have received your inquiry regarding "{{ subject }}" and appreciate your interest in our services.
+
+Our team is reviewing your message and will get back to you as soon as possible, typically within 24-48 business hours.
+
+YOUR MESSAGE DETAILS:
+Subject: {{ subject }}
+Message:
+{{ message }}
+
+If you have any urgent matters or additional information to share, please feel free to call us directly or reply to this email.
+
+Best regards,
+The {{ site_name }} Team
+
+CONTACT INFORMATION:
+Email: services.ricas@gmail.com
+Phone: 0505584553
+Website: {{ site_url }}
+
+Follow us on social media:
+Facebook | Twitter | LinkedIn | Instagram
+
+---
+This is an automated response. Your message has been received and is being processed.
+© {{ site_name }} - All rights reserved.

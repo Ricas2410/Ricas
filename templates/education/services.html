@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ricas IT Services - ICT Education Services{% endblock %}
+
+{% block content %}
+<!-- Education Hero Section -->
+<section class="hero" style="background: linear-gradient(135deg, rgba(14, 168, 206, 0.4) 0%, rgba(0, 119, 182, 0.4) 100%), url('{% if banners.education_hero and banners.education_hero.image %}{{ banners.education_hero.image.url }}{% else %}https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1122&q=80{% endif %}') center center/cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 style="color: #FFD700;">ICT Education Services</h1>
+                <p class="lead">Practical technology education for kids, teens, and adults</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education Overview -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="{% if banners.education_overview and banners.education_overview.image %}{{ banners.education_overview.image.url }}{% else %}https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1232&q=80{% endif %}" alt="ICT Education" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6">
+                <h2>Our Approach to ICT Education</h2>
+                <p class="lead">We believe in learning by doing.</p>
+                <p>Our ICT education programs are designed to be practical, engaging, and relevant to real-world applications. We focus on building skills that can be immediately applied, whether for academic, personal, or professional purposes.</p>
+                <p>Our experienced instructors create a supportive learning environment where students of all ages can explore technology, develop new skills, and gain confidence in their abilities.</p>
+                <div class="mt-4">
+                    <a href="{% url 'contact' %}" class="btn btn-primary">Inquire About Courses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education Services -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Our ICT Education Services</h2>
+            <p class="lead">Explore our range of technology courses and programs</p>
+        </div>
+
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}" onerror="this.src='https://via.placeholder.com/400x200?text={{ service.title }}'">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        <p class="card-text">{{ service.description|truncatewords:25 }}</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-primary">{{ service.get_age_group_display }}</span>
+                            <span class="badge bg-secondary">{{ service.get_format_display }}</span>
+                        </div>
+                        <a href="{% url 'education_service_detail' service.slug %}" class="btn btn-primary w-100">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No education services available at the moment. Please check back soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Age Groups -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Programs for All Ages</h2>
+            <p class="lead">We offer ICT education tailored to different age groups</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h3 style="color: var(--primary-color);">Kids (6-12)</h3>
+                        <p>Fun, interactive programs that introduce children to technology through games, animations, and creative projects. We focus on building foundational skills while fostering curiosity and creativity.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3 style="color: var(--primary-color);">Teens (13-17)</h3>
+                        <p>More advanced programs that help teenagers develop practical skills in web design, programming, and digital media. Our courses prepare teens for academic success and future career opportunities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm text-center" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3 style="color: var(--primary-color);">Adults (18+)</h3>
+                        <p>Professional development courses designed to enhance career prospects or help adults transition to technology-related fields. We offer flexible scheduling to accommodate work and family commitments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Benefits of Our ICT Education</h2>
+            <p class="lead">Why choose Ricas IT Services for your technology education</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-hands-on fa-2x me-3" style="color: var(--accent-color);"></i>
+                    </div>
+                    <div>
+                        <h4>Hands-on Learning</h4>
+                        <p>Our courses emphasize practical, hands-on experience with real-world applications, not just theory.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-users fa-2x me-3" style="color: var(--accent-color);"></i>
+                    </div>
+                    <div>
+                        <h4>Small Class Sizes</h4>
+                        <p>We maintain small class sizes to ensure personalized attention and support for each student.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-laptop-code fa-2x me-3" style="color: var(--accent-color);"></i>
+                    </div>
+                    <div>
+                        <h4>Industry-Relevant Skills</h4>
+                        <p>Our curriculum is regularly updated to reflect current industry trends and technologies.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-certificate fa-2x me-3" style="color: var(--accent-color);"></i>
+                    </div>
+                    <div>
+                        <h4>Qualified Instructors</h4>
+                        <p>Our instructors are experienced professionals with both teaching skills and practical industry experience.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-clock fa-2x me-3" style="color: var(--accent-color);"></i>
+                    </div>
+                    <div>
+                        <h4>Flexible Scheduling</h4>
+                        <p>We offer various scheduling options to accommodate different availability and learning preferences.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-project-diagram fa-2x me-3" style="color: var(--accent-color);"></i>
+                    </div>
+                    <div>
+                        <h4>Project-Based Learning</h4>
+                        <p>Students complete real projects that can be added to their portfolios for academic or professional purposes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 position-relative bg-white">
+    <div class="container py-4" data-aos="fade-up" style="position: relative; z-index: 1;">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="cta-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 py-4 px-lg-5 text-center text-lg-start">
+                            <h2 class="mb-4" style="color: #f19c07;">Ready to Start Learning?</h2>
+                            <p class="lead mb-4 text-dark">Contact us today to inquire about our ICT education services or to register for a course.</p>
+                            <div class="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start gap-3">
+                                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i> Contact Us
+                                </a>
+                                <a href="tel:{% if site_settings %}{{ site_settings.phone }}{% else %}0505584553{% endif %}" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-phone me-2"></i> Call Us
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 d-none d-lg-block">
+                            <div class="cta-image-container">
+                                {% if banners.education_cta and banners.education_cta.image %}
+                                    <img src="{{ banners.education_cta.image.url }}" alt="IT Education" class="img-fluid rounded-end">
+                                {% else %}
+                                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="IT Students" class="img-fluid rounded-end">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decorative elements -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style="z-index: 0; pointer-events: none;">
+        <div class="position-absolute" style="top: 10%; left: 5%; width: 100px; height: 100px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+        <div class="position-absolute" style="top: 50%; right: 10%; width: 150px; height: 150px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+        <div class="position-absolute" style="bottom: 10%; left: 15%; width: 80px; height: 80px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+    </div>
+</section>
+{% endblock %}

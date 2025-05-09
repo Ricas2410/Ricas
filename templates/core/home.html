@@ -1,0 +1,584 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ricas IT Services - Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" style="background: linear-gradient(135deg, rgba(14, 168, 206, 0.4) 0%, rgba(0, 119, 182, 0.4) 100%), url('{% if banners.home_hero and banners.home_hero.image %}{{ banners.home_hero.image.url }}{% else %}https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80{% endif %}') center center/cover;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                <h1 class="mb-3" style="color: #FFD700;">{% if home_settings %}{{ home_settings.hero_title }}{% else %}Empowering Through Technology{% endif %}</h1>
+                <p class="lead mb-4">{% if home_settings %}{{ home_settings.hero_subtitle }}{% else %}We provide quality ICT education for all ages and professional software development services tailored to your business needs.{% endif %}</p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="{% url 'education_services' %}" class="btn btn-light btn-lg mb-2 mb-md-0">
+                        <i class="fas fa-graduation-cap me-2"></i>ICT Education
+                    </a>
+                    <a href="{% url 'development_services' %}" class="btn btn-accent btn-lg mb-2 mb-md-0">
+                        <i class="fas fa-laptop-code me-2"></i>Software Development
+                    </a>
+                    <a href="{% url 'cybersecurity_services' %}" class="btn btn-light btn-lg mb-2 mb-md-0">
+                        <i class="fas fa-shield-alt me-2"></i>Cybersecurity
+                    </a>
+                    <a href="{% url 'computer_categories' %}" class="btn btn-accent btn-lg">
+                        <i class="fas fa-laptop me-2"></i>Computer Sales
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left" data-aos-delay="300">
+                <div class="position-relative">
+                    {% if banners.home_hero %}
+                    <img src="{{ banners.home_hero.image.url }}"
+                         alt="{% if banners.home_hero.title %}{{ banners.home_hero.title }}{% else %}Ricas IT Services{% endif %}"
+                         class="img-fluid rounded-lg shadow-lg"
+                         style="border: 10px solid rgba(255, 255, 255, 0.2);">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                         alt="Ricas IT Services"
+                         class="img-fluid rounded-lg shadow-lg"
+                         style="border: 10px solid rgba(255, 255, 255, 0.1);">
+                    {% endif %}
+                    <div class="position-absolute top-0 start-0 translate-middle bg-accent rounded-circle p-3 shadow-lg">
+                        <i class="fas fa-code fa-2x text-white"></i>
+                    </div>
+                    <div class="position-absolute bottom-0 end-0 translate-middle bg-primary rounded-circle p-3 shadow-lg">
+                        <i class="fas fa-chalkboard-teacher fa-2x text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Overview -->
+<section class="section-padding bg-light-gray">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2>{% if home_settings %}{{ home_settings.services_title }}{% else %}Our Services{% endif %}</h2>
+            <p class="lead">{% if home_settings %}{{ home_settings.services_subtitle }}{% else %}Discover how we can help you or your organization thrive in the digital world{% endif %}</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>ICT Education</h3>
+                    <p>We offer practical ICT education for kids, teens, and adults. Our courses are designed to build real-world skills in a fun and engaging environment.</p>
+                    <div class="d-flex justify-content-center">
+                        <div class="row g-2 mb-4 text-start">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-accent me-2"></i>
+                                    <span>Basic Computer Skills</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-accent me-2"></i>
+                                    <span>Scratch Programming</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'education_services' %}" class="btn btn-primary">Explore Courses</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Software Development</h3>
+                    <p>We develop custom software solutions for businesses of all sizes. From web applications to mobile apps, we create solutions that meet your specific needs.</p>
+                    <div class="d-flex justify-content-center">
+                        <div class="row g-2 mb-4 text-start">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-accent me-2"></i>
+                                    <span>Web Applications</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-accent me-2"></i>
+                                    <span>School Systems</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'development_services' %}" class="btn btn-primary">Explore Solutions</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Cybersecurity</h3>
+                    <p>We help protect your systems, data, and online activity with practical, affordable cybersecurity solutions for schools, homes, and small businesses.</p>
+                    <div class="d-flex justify-content-center">
+                        <div class="row g-2 mb-4 text-start">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-accent me-2"></i>
+                                    <span>Security Audits</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-accent me-2"></i>
+                                    <span>Data Protection</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'cybersecurity_services' %}" class="btn btn-primary">Explore Services</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Computer Sales</h3>
+                    <p>We offer quality computers, accessories, and network solutions for homes, schools, and businesses. Find the right equipment for your needs.</p>
+                    <div class="d-flex justify-content-center">
+                        <div class="row g-2 mb-4 text-start">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-accent me-2"></i>
+                                    <span>Laptops & Desktops</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-accent me-2"></i>
+                                    <span>Network Setup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'computer_categories' %}" class="btn btn-primary">Explore Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education Services Preview -->
+<section class="section-padding">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2>{% if home_settings %}{{ home_settings.education_title }}{% else %}ICT Education Services{% endif %}</h2>
+            <p class="lead">{% if home_settings %}{{ home_settings.education_subtitle }}{% else %}Practical technology education for all ages{% endif %}</p>
+        </div>
+
+        <div class="row">
+            {% for service in education_services %}
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+                <div class="card h-100">
+                    <div class="position-relative">
+                        <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}"
+                             onerror="this.src='https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1122&q=80'">
+                        <span class="position-absolute top-0 end-0 bg-accent text-white px-3 py-2 m-3 rounded-pill">
+                            {{ service.get_age_group_display }}
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        <p class="card-text text-muted">{{ service.description|truncatewords:15 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-light text-primary">{{ service.get_format_display }}</span>
+                            <a href="{% url 'education_service_detail' service.slug %}" class="btn btn-sm btn-outline-primary">
+                                Learn More <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i> No education services available at the moment.
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="col-12 text-center mt-5" data-aos="fade-up">
+                <a href="{% url 'education_services' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-graduation-cap me-2"></i> View All Education Services
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Development Services Preview -->
+<section class="section-padding bg-light-gray">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2>{% if home_settings %}{{ home_settings.development_title }}{% else %}Software Development Services{% endif %}</h2>
+            <p class="lead">{% if home_settings %}{{ home_settings.development_subtitle }}{% else %}Custom solutions tailored to your business needs{% endif %}</p>
+        </div>
+
+        <div class="row">
+            {% for service in development_services %}
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+                <div class="card h-100">
+                    <div class="position-relative overflow-hidden">
+                        {% if service.image %}
+                        <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}">
+                        {% else %}
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" class="card-img-top" alt="{{ service.title }}">
+                        {% endif %}
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+                            <div class="bg-primary bg-opacity-75 text-white px-3 py-2 rounded-pill">
+                                <i class="fas fa-code me-2"></i>{{ service.title }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        <p class="card-text text-muted">{{ service.description|truncatewords:15 }}</p>
+                        <div class="mb-3">
+                            <span class="badge bg-light text-primary me-1 mb-1">
+                                <i class="fas fa-cogs me-1"></i>{{ service.technologies|truncatechars:30 }}
+                            </span>
+                        </div>
+                        <a href="{% url 'development_service_detail' service.slug %}" class="btn btn-outline-primary w-100">
+                            Learn More <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i> No development services available at the moment.
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="col-12 text-center mt-5" data-aos="fade-up">
+                <a href="{% url 'development_services' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-laptop-code me-2"></i> View All Development Services
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cybersecurity Services Preview -->
+<section class="section-padding">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2>Cybersecurity Services</h2>
+            <p class="lead">Protecting your systems, data, and online activity with practical solutions</p>
+        </div>
+
+        <div class="row">
+            {% for service in cybersecurity_services %}
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+                <div class="card h-100">
+                    <div class="service-icon text-center mt-4">
+                        <i class="fas {% if service.icon %}{{ service.icon }}{% else %}fa-shield-alt{% endif %}"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ service.title }}</h5>
+                        <p class="card-text text-muted">{{ service.description|truncatewords:15 }}</p>
+                        <a href="{% url 'cybersecurity_service_detail' service.slug %}" class="btn btn-outline-primary w-100">
+                            Learn More <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i> No cybersecurity services available at the moment.
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="col-12 text-center mt-5" data-aos="fade-up">
+                <a href="{% url 'cybersecurity_services' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-shield-alt me-2"></i> View All Cybersecurity Services
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Computer Sales Preview -->
+<section class="section-padding bg-light-gray">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2>Computer Sales & Network Services</h2>
+            <p class="lead">Quality computers, accessories, and network solutions for your needs</p>
+        </div>
+
+        <div class="row">
+            {% for category in computer_categories %}
+            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+                <div class="card h-100">
+                    <div class="position-relative">
+                        {% if category.image %}
+                        <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.name }}">
+                        {% else %}
+                        <img src="https://images.unsplash.com/photo-1603732551658-5fabbafa84eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="{{ category.name }}">
+                        {% endif %}
+                        <span class="position-absolute top-0 end-0 bg-accent text-white px-3 py-2 m-3 rounded-pill">
+                            <i class="fas fa-laptop me-2"></i>{{ category.name }}
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ category.name }}</h5>
+                        <p class="card-text text-muted">{{ category.description|truncatewords:15 }}</p>
+                        <a href="{% url 'computer_category_detail' category.slug %}" class="btn btn-outline-primary w-100">
+                            View Products <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i> No computer categories available at the moment.
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for service in network_services %}
+            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100">
+                    <div class="position-relative">
+                        {% if service.image %}
+                        <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}">
+                        {% else %}
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1034&q=80" class="card-img-top" alt="{{ service.title }}">
+                        {% endif %}
+                        <span class="position-absolute top-0 end-0 bg-primary text-white px-3 py-2 m-3 rounded-pill">
+                            <i class="fas fa-network-wired me-2"></i>Network
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        <p class="card-text text-muted">{{ service.description|truncatewords:15 }}</p>
+                        <a href="{% url 'network_service_detail' service.slug %}" class="btn btn-outline-primary w-100">
+                            Learn More <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="col-12 text-center mt-5" data-aos="fade-up">
+                <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                    <a href="{% url 'computer_categories' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-laptop me-2"></i> View All Computer Products
+                    </a>
+                    <a href="{% url 'network_services' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-network-wired me-2"></i> View Network Services
+                    </a>
+                    {% if site_settings and site_settings.ecommerce_url %}
+                    <a href="{% url 'redirect_to_ecommerce' %}" class="btn btn-accent btn-lg" target="_blank">
+                        <i class="fas fa-shopping-cart me-2"></i> Shop Online
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Preview -->
+<section class="section-padding">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2>{% if home_settings %}{{ home_settings.portfolio_title }}{% else %}Our Portfolio{% endif %}</h2>
+            <p class="lead">{% if home_settings %}{{ home_settings.portfolio_subtitle }}{% else %}Check out some of our recent projects{% endif %}</p>
+        </div>
+
+        <!-- Desktop Portfolio Display -->
+        <div class="row g-4 d-none d-md-flex">
+            {% for project in projects %}
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+                <div class="portfolio-item">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}"
+                         onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80'">
+                    <div class="portfolio-overlay">
+                        <h5>{{ project.title }}</h5>
+                        <p>{{ project.get_category_display }}</p>
+                        <a href="{% url 'project_detail' project.slug %}" class="btn btn-light">
+                            View Project <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i> No portfolio projects available at the moment.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Mobile Portfolio Carousel -->
+        <div class="d-md-none">
+            {% if projects %}
+            <div id="portfolioCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for project in projects %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="portfolio-item">
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}"
+                                 onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80'">
+                            <div class="portfolio-overlay">
+                                <h5>{{ project.title }}</h5>
+                                <p>{{ project.get_category_display }}</p>
+                                <a href="{% url 'project_detail' project.slug %}" class="btn btn-light">
+                                    View Project <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <div class="carousel-indicators position-relative mt-4">
+                    {% for project in projects %}
+                    <button type="button" data-bs-target="#portfolioCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i> No portfolio projects available at the moment.
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="col-12 text-center mt-5" data-aos="fade-up">
+            <a href="{% url 'portfolio' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-briefcase me-2"></i> View Full Portfolio
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section-padding pb-2 bg-light-gray">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2>{% if home_settings %}{{ home_settings.testimonial_title }}{% else %}What Our Clients Say{% endif %}</h2>
+            <p class="lead">{% if home_settings %}{{ home_settings.testimonial_subtitle }}{% else %}Testimonials from our satisfied clients{% endif %}</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for testimonial in testimonials %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}" data-aos="fade-up" data-aos-delay="100">
+                                <div class="testimonial text-center">
+                                    <div class="mb-4">
+                                        <i class="fas fa-quote-left fa-3x text-accent opacity-25"></i>
+                                    </div>
+                                    <p class="testimonial-content mb-4">{{ testimonial.content }}</p>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        {% if testimonial.image %}
+                                            <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}" class="testimonial-img">
+                                        {% else %}
+                                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="{{ testimonial.name }}" class="testimonial-img" onerror="this.src='https://via.placeholder.com/80x80?text={{ testimonial.name|first }}'">
+                                        {% endif %}
+                                        <div class="ms-3 text-start">
+                                            <h5 class="mb-0">{{ testimonial.name }}</h5>
+                                            <p class="text-muted mb-0">{{ testimonial.position }}{% if testimonial.company %}, {{ testimonial.company }}{% endif %}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="carousel-item active">
+                                <div class="testimonial text-center">
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-info-circle me-2"></i> No testimonials available at the moment.
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% if testimonials.count > 1 %}
+                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <div class="carousel-indicators position-relative mt-4">
+                            {% for testimonial in testimonials %}
+                                <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="pt-2 pb-5 position-relative bg-white">
+    <div class="container py-4" data-aos="fade-up" style="position: relative; z-index: 1;">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="cta-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 py-4 px-lg-5 text-center text-lg-start">
+                            <h2 class="mb-4" style="color: #f19c07;">{% if home_settings %}{{ home_settings.cta_title }}{% else %}Ready to Transform Your Digital Experience?{% endif %}</h2>
+                            <p class="lead mb-4 text-dark">{% if home_settings %}{{ home_settings.cta_subtitle }}{% else %}Contact us today to discuss your ICT education, software development, cybersecurity, or computer needs. Our team is ready to help you achieve your goals.{% endif %}</p>
+                            <div class="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start gap-3">
+                                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i> Contact Us
+                                </a>
+                                <a href="tel:{% if site_settings %}{{ site_settings.phone }}{% else %}0505584553{% endif %}" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-phone me-2"></i> Call Us
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 d-none d-lg-block">
+                            <div class="cta-image-container">
+                                {% if banners.cta_image and banners.cta_image.image %}
+                                    <img src="{{ banners.cta_image.image.url }}" alt="IT Education" class="img-fluid rounded-end">
+                                {% else %}
+                                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="IT Education" class="img-fluid rounded-end">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decorative elements -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style="z-index: 0; pointer-events: none;">
+        <div class="position-absolute" style="top: 10%; left: 5%; width: 100px; height: 100px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+        <div class="position-absolute" style="top: 50%; right: 10%; width: 150px; height: 150px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+        <div class="position-absolute" style="bottom: 10%; left: 15%; width: 80px; height: 80px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+    </div>
+</section>
+{% endblock %}

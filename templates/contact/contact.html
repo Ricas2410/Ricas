@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block title %}Ricas IT Services - Contact Us{% endblock %}
+
+{% block content %}
+<!-- Contact Hero Section -->
+<section class="hero" style="background: linear-gradient(135deg, rgba(14, 168, 206, 0.4) 0%, rgba(0, 119, 182, 0.4) 100%), url('{% if banners.contact_hero and banners.contact_hero.image %}{{ banners.contact_hero.image.url }}{% else %}https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80{% endif %}') center center/cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 style="color: #f19c07;">Contact Us</h1>
+                <p class="lead">Get in touch with our team to discuss your needs</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information and Form -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="card border-0 shadow-sm h-100" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h2 class="card-title mb-4" style="color: var(--primary-color);">Get In Touch</h2>
+
+                        <div class="mb-4">
+                            <h5><i class="fas fa-envelope me-2" style="color: var(--accent-color);"></i> Email</h5>
+                            <p><a href="mailto:services.ricas@gmail.com" class="text-decoration-none">services.ricas@gmail.com</a></p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5><i class="fas fa-phone me-2" style="color: var(--accent-color);"></i> Phone</h5>
+                            <p><a href="tel:0505584553" class="text-decoration-none">0505584553</a></p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5><i class="fas fa-map-marker-alt me-2" style="color: var(--accent-color);"></i> Location</h5>
+                            <p>Accra, Ghana</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5><i class="fas fa-clock me-2" style="color: var(--accent-color);"></i> Business Hours</h5>
+                            <p>Monday - Friday: 9:00 AM - 5:00 PM<br>Saturday: 10:00 AM - 2:00 PM<br>Sunday: Closed</p>
+                        </div>
+
+                        <div>
+                            <h5><i class="fab fa-whatsapp me-2" style="color: var(--accent-color);"></i> WhatsApp</h5>
+                            <p><a href="https://wa.me/0505584553" target="_blank" class="btn btn-success"><i class="fab fa-whatsapp me-2"></i> Chat on WhatsApp</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h2 class="card-title mb-4" style="color: var(--primary-color);">Send Us a Message</h2>
+
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {% bootstrap_field form.name layout='floating' %}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {% bootstrap_field form.email layout='floating' %}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {% bootstrap_field form.phone layout='floating' %}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {% bootstrap_field form.service_type layout='floating' %}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                {% bootstrap_field form.message layout='floating' %}
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 style="color: var(--primary-color);">Frequently Asked Questions</h2>
+            <p class="lead">Find answers to common questions about our services</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item border-0 mb-3 shadow-sm">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                What services does Ricas IT Services offer?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Ricas IT Services offers two main service categories: ICT Education and Software Development. Our ICT Education services include courses for kids, teens, and adults in areas such as basic computer skills, programming, web design, and more. Our Software Development services include custom web applications, mobile apps, school management systems, e-commerce solutions, and other tailored software solutions for businesses.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 mb-3 shadow-sm">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                How can I enroll in an ICT education course?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                To enroll in an ICT education course, you can contact us through this contact form, email, or phone. Let us know which course you're interested in, and we'll provide you with information about upcoming sessions, pricing, and the enrollment process. We offer flexible scheduling options to accommodate different needs.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 mb-3 shadow-sm">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                What is the process for developing a custom software solution?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our software development process typically includes the following steps: 1) Initial consultation and requirements gathering, 2) Planning and design, 3) Development, 4) Testing and quality assurance, 5) Deployment, and 6) Ongoing support and maintenance. We work closely with clients throughout the process to ensure the final product meets their specific needs and expectations.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 mb-3 shadow-sm">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                How much do your services cost?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                The cost of our services varies depending on the specific requirements of each project or course. For ICT education, we offer different pricing tiers based on the course content, duration, and format. For software development, we provide custom quotes based on the scope, complexity, and timeline of the project. Contact us for a personalized quote based on your specific needs.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 shadow-sm">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                Do you offer support after project completion?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, we offer ongoing support and maintenance for all our software development projects. We understand that software needs to evolve as your business grows and changes. We offer various support packages to ensure your software continues to meet your needs over time. This can include bug fixes, feature enhancements, security updates, and performance optimization.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 position-relative bg-white">
+    <div class="container py-4" data-aos="fade-up" style="position: relative; z-index: 1;">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="cta-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 py-4 px-lg-5 text-center text-lg-start">
+                            <h2 class="mb-4" style="color: #f19c07;">Ready to Get Started?</h2>
+                            <p class="lead mb-4 text-dark">We're excited to hear from you and discuss how we can help with your ICT education or software development needs.</p>
+                            <div class="row">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <a href="tel:0505584553" class="btn btn-primary btn-lg w-100"><i class="fas fa-phone me-2"></i> Call Us</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="mailto:services.ricas@gmail.com" class="btn btn-outline-primary btn-lg w-100"><i class="fas fa-envelope me-2"></i> Email Us</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 d-none d-lg-block">
+                            <div class="cta-image-container">
+                                {% if banners.contact_cta and banners.contact_cta.image %}
+                                    <img src="{{ banners.contact_cta.image.url }}" alt="Contact Us" class="img-fluid rounded-end">
+                                {% else %}
+                                    <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Contact Us" class="img-fluid rounded-end">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decorative elements -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style="z-index: 0; pointer-events: none;">
+        <div class="position-absolute" style="top: 10%; left: 5%; width: 100px; height: 100px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+        <div class="position-absolute" style="top: 50%; right: 10%; width: 150px; height: 150px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+        <div class="position-absolute" style="bottom: 10%; left: 15%; width: 80px; height: 80px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Ricas IT Services Admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        {% if site_settings and site_settings.site_logo %}
+            <img src="{{ site_settings.site_logo.url }}" alt="{{ site_settings.site_name }}" height="40" style="margin-right: 10px; vertical-align: middle;">
+        {% else %}
+            <img src="{% static 'img/logo.png' %}" alt="Ricas IT Services" height="40" style="margin-right: 10px; vertical-align: middle;" onerror="this.style.display='none'">
+        {% endif %}
+        <span>{{ site_title|default:_('Ricas IT Services Admin') }}</span>
+    </a>
+</h1>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    :root {
+        --primary-color: #0ea8ce;
+        --secondary-color: #023047;
+        --accent-color: #f19c07;
+    }
+
+    /* Header only */
+    #header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+    }
+
+    #header a:link, #header a:visited {
+        color: white;
+    }
+
+    #header a:hover {
+        color: var(--accent-color);
+    }
+
+    /* Breadcrumbs */
+    div.breadcrumbs {
+        background: var(--secondary-color);
+    }
+</style>
+{% endblock %}

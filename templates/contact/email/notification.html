@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Contact Form Submission</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .email-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #0ea8ce 0%, #023047 100%);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        .header h2 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 24px;
+        }
+        .content {
+            padding: 30px 25px;
+        }
+        .footer {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #eaeaea;
+        }
+        .label {
+            font-weight: bold;
+            color: #0ea8ce;
+            display: inline-block;
+            width: 80px;
+        }
+        .message-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #0ea8ce;
+        }
+        .button {
+            display: inline-block;
+            background-color: #f19c07;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .info-row {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .priority-high {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>🔔 New Contact Form Submission</h2>
+        </div>
+        <div class="content">
+            <p>You have received a new message from the contact form on your website.</p>
+
+            <div class="info-row">
+                <p><span class="label">Name:</span> <strong>{{ name }}</strong></p>
+            </div>
+
+            <div class="info-row">
+                <p><span class="label">Email:</span> <a href="mailto:{{ email }}">{{ email }}</a></p>
+            </div>
+
+            {% if phone %}
+            <div class="info-row">
+                <p><span class="label">Phone:</span> <a href="tel:{{ phone }}">{{ phone }}</a></p>
+            </div>
+            {% endif %}
+
+            <div class="info-row">
+                <p><span class="label">Subject:</span> <strong>{{ subject }}</strong></p>
+            </div>
+
+            <div class="info-row">
+                <p><span class="label">Date:</span> {% now "F j, Y, g:i a" %}</p>
+            </div>
+
+            <div class="message-box">
+                <p><span class="label">Message:</span></p>
+                <p>{{ message }}</p>
+            </div>
+
+            <div class="priority-high">
+                <p><strong>Action Required:</strong> Please respond to this inquiry within 24-48 business hours.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 25px;">
+                <a href="mailto:{{ email }}?subject=RE: {{ subject }}" class="button">Reply to {{ name }}</a>
+            </div>
+        </div>
+        <div class="footer">
+            <p>This email was sent from the contact form on {{ site_name }} ({{ site_url }}).</p>
+            <p>To manage all inquiries, please log in to the admin dashboard.</p>
+        </div>
+    </div>
+</body>
+</html>

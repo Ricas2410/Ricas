@@ -1,0 +1,323 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% if site_settings %}{{ site_settings.site_name }}{% else %}Ricas IT Services{% endif %}{% endblock %}</title>
+
+    {% if site_settings and site_settings.meta_description %}
+    <meta name="description" content="{{ site_settings.meta_description }}">
+    {% endif %}
+
+    {% if site_settings and site_settings.meta_keywords %}
+    <meta name="keywords" content="{{ site_settings.meta_keywords }}">
+    {% endif %}
+
+    {% if site_settings and site_settings.favicon %}
+    <link rel="shortcut icon" href="{{ site_settings.favicon.url }}" type="image/x-icon">
+    {% endif %}
+
+    <!-- Bootstrap 5 CSS -->
+    {% bootstrap_css %}
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3" style="background: var(--gradient-1);">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+                {% if site_settings and site_settings.site_logo %}
+                <img src="{{ site_settings.site_logo.url }}" alt="{{ site_settings.site_name }} Logo" class="me-2" style="width: 40px; height: 40px; border-radius: 8px; object-fit: contain;">
+                {% else %}
+                <img src="https://via.placeholder.com/40x40?text=R" alt="Ricas Logo" class="me-2" style="border-radius: 8px; background-color: var(--accent-color);">
+                {% endif %}
+                <span class="fw-bold">{% if site_settings %}{{ site_settings.site_name }}{% else %}Ricas IT Services{% endif %}</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link {% if request.path == '/' %}active fw-bold{% endif %}" href="{% url 'home' %}">
+                            <span class="nav-link-inner">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link {% if request.path == '/about/' %}active fw-bold{% endif %}" href="{% url 'about' %}">
+                            <span class="nav-link-inner">About Us</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle {% if '/education/' in request.path or '/development/' in request.path or '/cybersecurity/' in request.path or '/computers/' in request.path %}active fw-bold{% endif %}" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="nav-link-inner">Our Services</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item {% if '/education/' in request.path %}active{% endif %}" href="{% url 'education_services' %}">
+                                <i class="fas fa-graduation-cap me-2" style="color: var(--primary-color);"></i> ICT Education
+                            </a></li>
+                            <li><a class="dropdown-item {% if '/development/' in request.path %}active{% endif %}" href="{% url 'development_services' %}">
+                                <i class="fas fa-code me-2" style="color: var(--primary-color);"></i> Software Development
+                            </a></li>
+                            <li><a class="dropdown-item {% if '/cybersecurity/' in request.path %}active{% endif %}" href="{% url 'cybersecurity_services' %}">
+                                <i class="fas fa-shield-alt me-2" style="color: var(--primary-color);"></i> Cybersecurity
+                            </a></li>
+                            <li><a class="dropdown-item {% if '/computers/' in request.path and '/network/' not in request.path %}active{% endif %}" href="{% url 'computer_categories' %}">
+                                <i class="fas fa-laptop me-2" style="color: var(--primary-color);"></i> Computer Sales
+                            </a></li>
+                            <li><a class="dropdown-item {% if '/computers/network/' in request.path %}active{% endif %}" href="{% url 'network_services' %}">
+                                <i class="fas fa-network-wired me-2" style="color: var(--primary-color);"></i> Network Services
+                            </a></li>
+                            {% if site_settings and site_settings.ecommerce_url %}
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'redirect_to_ecommerce' %}" target="_blank">
+                                <i class="fas fa-shopping-cart me-2" style="color: var(--accent-color);"></i> Online Store
+                            </a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link {% if '/portfolio/' in request.path %}active fw-bold{% endif %}" href="{% url 'portfolio' %}">
+                            <span class="nav-link-inner">Portfolio</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn rounded-pill px-4 py-2" href="{% url 'contact' %}" style="background-color: var(--accent-color); color: white;">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Messages -->
+    <div class="container mt-3">
+        {% bootstrap_messages %}
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-5" style="background: linear-gradient(135deg, #0ea8ce 0%, #023047 100%) url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2029&q=80') center/cover; background-blend-mode: overlay; background-opacity: 0.1;">
+        <div class="container py-5">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-4">
+                        <a href="{% url 'home' %}" class="d-flex align-items-center mb-3">
+                            {% if site_settings and site_settings.site_logo %}
+                            <img src="{{ site_settings.site_logo.url }}" alt="{{ site_settings.site_name }} Logo" class="me-2" style="width: 50px; height: 50px; border-radius: 8px; object-fit: contain;">
+                            {% else %}
+                            <img src="https://via.placeholder.com/50x50?text=R" alt="Ricas Logo" class="me-2" style="border-radius: 8px; background-color: var(--primary-color);">
+                            {% endif %}
+                            <h4 class="text-white mb-0">{% if site_settings %}{{ site_settings.site_name }}{% else %}Ricas IT Services{% endif %}</h4>
+                        </a>
+                        <p class="text-light">{% if site_settings %}{{ site_settings.footer_text }}{% else %}Providing quality ICT education and professional software development services to help individuals and businesses thrive in the digital world.{% endif %}</p>
+                    </div>
+                    <div class="social-icons">
+                        {% if site_settings and site_settings.facebook_url %}
+                        <a href="{{ site_settings.facebook_url }}" target="_blank" aria-label="Facebook" style="background-color: var(--primary-color);"><i class="fab fa-facebook-f"></i></a>
+                        {% endif %}
+                        {% if site_settings and site_settings.twitter_url %}
+                        <a href="{{ site_settings.twitter_url }}" target="_blank" aria-label="Twitter" style="background-color: var(--info-color);"><i class="fab fa-twitter"></i></a>
+                        {% endif %}
+                        {% if site_settings and site_settings.instagram_url %}
+                        <a href="{{ site_settings.instagram_url }}" target="_blank" aria-label="Instagram" style="background-color: var(--accent-color);"><i class="fab fa-instagram"></i></a>
+                        {% endif %}
+                        {% if site_settings and site_settings.linkedin_url %}
+                        <a href="{{ site_settings.linkedin_url }}" target="_blank" aria-label="LinkedIn" style="background-color: var(--secondary-color);"><i class="fab fa-linkedin-in"></i></a>
+                        {% endif %}
+                        {% if not site_settings or not site_settings.facebook_url and not site_settings.twitter_url and not site_settings.instagram_url and not site_settings.linkedin_url %}
+                        <a href="#" aria-label="Facebook" style="background-color: var(--primary-color);"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter" style="background-color: var(--info-color);"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram" style="background-color: var(--accent-color);"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn" style="background-color: var(--secondary-color);"><i class="fab fa-linkedin-in"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
+                        <li><a href="{% url 'about' %}" class="text-light">About Us</a></li>
+                        <li><a href="{% url 'education_services' %}" class="text-light">ICT Education</a></li>
+                        <li><a href="{% url 'development_services' %}" class="text-light">Software Development</a></li>
+                        <li><a href="{% url 'portfolio' %}" class="text-light">Portfolio</a></li>
+                        <li><a href="{% url 'contact' %}" class="text-light">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white">Our Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'education_services' %}" class="text-light">ICT Education</a></li>
+                        <li><a href="{% url 'development_services' %}" class="text-light">Software Development</a></li>
+                        <li><a href="{% url 'cybersecurity_services' %}" class="text-light">Cybersecurity</a></li>
+                        <li><a href="{% url 'computer_categories' %}" class="text-light">Computer Sales</a></li>
+                        <li><a href="{% url 'network_services' %}" class="text-light">Network Services</a></li>
+                        {% if site_settings and site_settings.ecommerce_url %}
+                        <li><a href="{% url 'redirect_to_ecommerce' %}" class="text-light" target="_blank">Online Store</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white">Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li class="d-flex mb-3 text-light">
+                            <i class="fas fa-map-marker-alt me-3 mt-1" style="color: var(--primary-color);"></i>
+                            <span>{% if site_settings %}{{ site_settings.address }}{% else %}Accra, Ghana{% endif %}</span>
+                        </li>
+                        <li class="d-flex mb-3">
+                            <i class="fas fa-envelope me-3 mt-1" style="color: var(--primary-color);"></i>
+                            <span><a href="mailto:{% if site_settings %}{{ site_settings.email }}{% else %}services.ricas@gmail.com{% endif %}" class="text-light">{% if site_settings %}{{ site_settings.email }}{% else %}services.ricas@gmail.com{% endif %}</a></span>
+                        </li>
+                        <li class="d-flex mb-3">
+                            <i class="fas fa-phone me-3 mt-1" style="color: var(--primary-color);"></i>
+                            <span><a href="tel:{% if site_settings %}{{ site_settings.phone }}{% else %}0505584553{% endif %}" class="text-light">{% if site_settings %}{{ site_settings.phone }}{% else %}0505584553{% endif %}</a></span>
+                        </li>
+                        <li class="d-flex mb-3 text-light">
+                            <i class="fas fa-clock me-3 mt-1" style="color: var(--primary-color);"></i>
+                            <span>{% if site_settings %}{{ site_settings.business_hours }}{% else %}Mon-Fri: 9:00 AM - 5:00 PM{% endif %}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom text-center pt-4 mt-4 border-top border-secondary">
+                <p class="text-light">{% if copyright_text %}{{ copyright_text }}{% else %}&copy; {% now "Y" %} Ricas IT Services. All rights reserved.{% endif %} | Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    {% bootstrap_javascript %}
+
+    <!-- AOS Animation JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+
+        // Add smooth scrolling to all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Hybrid dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            // For all devices
+            dropdowns.forEach(dropdown => {
+                const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+
+                // Toggle dropdown on click
+                if (dropdownToggle) {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        // Prevent default behavior only on desktop
+                        if (window.innerWidth >= 992) {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            // Toggle the 'show' class
+                            if (dropdownMenu.classList.contains('show')) {
+                                dropdownMenu.classList.remove('show');
+                            } else {
+                                // Close all other dropdowns first
+                                document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                                    if (menu !== dropdownMenu) {
+                                        menu.classList.remove('show');
+                                    }
+                                });
+                                dropdownMenu.classList.add('show');
+                            }
+                        }
+                    });
+                }
+
+                // Prevent dropdown from closing when clicking inside it
+                if (dropdownMenu) {
+                    dropdownMenu.addEventListener('click', function(e) {
+                        if (window.innerWidth >= 992) {
+                            e.stopPropagation();
+                        }
+                    });
+                }
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown') && window.innerWidth >= 992) {
+                    document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                }
+            });
+
+            // Handle hover events for desktop
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                dropdowns.forEach(dropdown => {
+                    // Add hover event listeners
+                    dropdown.addEventListener('mouseenter', function() {
+                        const dropdownMenu = this.querySelector('.dropdown-menu');
+                        if (dropdownMenu) {
+                            dropdownMenu.classList.add('show');
+                        }
+                    });
+
+                    dropdown.addEventListener('mouseleave', function() {
+                        const dropdownMenu = this.querySelector('.dropdown-menu');
+                        if (dropdownMenu && !dropdownMenu.classList.contains('clicked')) {
+                            dropdownMenu.classList.remove('show');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

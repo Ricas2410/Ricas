@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} | Network Services | {{ block.super }}{% endblock %}
+
+{% block content %}
+<!-- Service Hero Section -->
+<section class="hero" style="background: linear-gradient(135deg, rgba(14, 168, 206, 0.4) 0%, rgba(0, 119, 182, 0.4) 100%), url('{% if banners.network_hero and banners.network_hero.image %}{{ banners.network_hero.image.url }}{% else %}https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1034&q=80{% endif %}') center center/cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 style="color: #f19c07;">{{ service.title }}</h1>
+                <p class="lead">Professional network solutions for homes, schools, and businesses</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Details -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm mb-4" style="border-top: 4px solid var(--primary-color);">
+                    {% if service.image %}
+                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1034&q=80" class="card-img-top" alt="{{ service.title }}">
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <h2 class="card-title mb-4" style="color: var(--primary-color);">About This Service</h2>
+                        <p class="card-text">{{ service.description|linebreaks }}</p>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <a href="{% url 'contact' %}?service_type=network" class="btn btn-primary btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i> Request a Consultation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Section -->
+                <div class="card border-0 shadow-sm mb-4" style="border-top: 4px solid var(--accent-color);">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4" style="color: var(--primary-color);">Benefits</h3>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check-circle fa-2x me-3" style="color: var(--accent-color);"></i>
+                                    </div>
+                                    <div>
+                                        <h5 style="color: var(--primary-color);">Improved Performance</h5>
+                                        <p>Faster speeds and better reliability</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check-circle fa-2x me-3" style="color: var(--accent-color);"></i>
+                                    </div>
+                                    <div>
+                                        <h5 style="color: var(--primary-color);">Enhanced Security</h5>
+                                        <p>Protection against unauthorized access</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check-circle fa-2x me-3" style="color: var(--accent-color);"></i>
+                                    </div>
+                                    <div>
+                                        <h5 style="color: var(--primary-color);">Scalable Solutions</h5>
+                                        <p>Grows with your needs over time</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check-circle fa-2x me-3" style="color: var(--accent-color);"></i>
+                                    </div>
+                                    <div>
+                                        <h5 style="color: var(--primary-color);">Expert Support</h5>
+                                        <p>Ongoing assistance and maintenance</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Process Section -->
+                <div class="card border-0 shadow-sm mb-4" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4" style="color: var(--primary-color);">Our Process</h3>
+
+                        <div class="timeline">
+                            <div class="timeline-item mb-4 pb-4 border-bottom">
+                                <h5><i class="fas fa-1 me-2" style="color: var(--accent-color);"></i> Assessment</h5>
+                                <p>We evaluate your current setup and understand your needs and goals.</p>
+                            </div>
+                            <div class="timeline-item mb-4 pb-4 border-bottom">
+                                <h5><i class="fas fa-2 me-2" style="color: var(--accent-color);"></i> Planning</h5>
+                                <p>We design a network solution tailored to your specific requirements.</p>
+                            </div>
+                            <div class="timeline-item mb-4 pb-4 border-bottom">
+                                <h5><i class="fas fa-3 me-2" style="color: var(--accent-color);"></i> Implementation</h5>
+                                <p>We install and configure all necessary hardware and software.</p>
+                            </div>
+                            <div class="timeline-item mb-4 pb-4 border-bottom">
+                                <h5><i class="fas fa-4 me-2" style="color: var(--accent-color);"></i> Testing</h5>
+                                <p>We thoroughly test the network to ensure optimal performance and security.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5><i class="fas fa-5 me-2" style="color: var(--accent-color);"></i> Support</h5>
+                                <p>We provide ongoing maintenance and support to keep your network running smoothly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Service Overview -->
+                <div class="card border-0 shadow-sm mb-4" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4" style="color: var(--primary-color);">Service Overview</h3>
+
+                        <div class="mb-3">
+                            <h5><i class="fas fa-network-wired me-2" style="color: var(--accent-color);"></i> Service Type</h5>
+                            <p>Network Setup & Configuration</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5><i class="fas fa-users me-2" style="color: var(--accent-color);"></i> Ideal For</h5>
+                            <p>Homes, Schools, Businesses</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5><i class="fas fa-clock me-2" style="color: var(--accent-color);"></i> Timeline</h5>
+                            <p>Varies based on project scope</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5><i class="fas fa-hand-holding-usd me-2" style="color: var(--accent-color);"></i> Pricing</h5>
+                            <p>Custom quote based on requirements</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Us -->
+                <div class="card border-0 shadow-sm" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4" style="color: var(--primary-color);">Get Started</h3>
+                        <p>Ready to improve your network? Contact us for a free consultation.</p>
+                        <div class="d-grid">
+                            <a href="{% url 'contact' %}?service_type=network" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-2"></i> Contact Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Services -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5" style="color: var(--primary-color);">Other Network Services</h2>
+
+        <div class="row">
+            {% for related_service in related_services %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm" style="border-top: 4px solid var(--primary-color);">
+                    {% if related_service.image %}
+                    <img src="{{ related_service.image.url }}" class="card-img-top" alt="{{ related_service.title }}">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1034&q=80" class="card-img-top" alt="{{ related_service.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: var(--primary-color);">{{ related_service.title }}</h5>
+                        <p class="card-text">{{ related_service.description|truncatewords:15 }}</p>
+                        <a href="{% url 'network_service_detail' related_service.slug %}" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-info-circle me-2"></i> Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No related services available.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'network_services' %}" class="btn btn-primary">
+                <i class="fas fa-th-list me-2"></i> View All Network Services
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 position-relative bg-white">
+    <div class="container py-4" data-aos="fade-up" style="position: relative; z-index: 1;">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="cta-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 py-4 px-lg-5 text-center text-lg-start">
+                            <h2 class="mb-4" style="color: #f19c07;">Ready to Upgrade Your Network?</h2>
+                            <p class="lead mb-4 text-dark">Contact us today to discuss your network needs and get a free consultation.</p>
+                            <div class="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start gap-3">
+                                <a href="{% url 'contact' %}?service_type=network" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i> Contact Us
+                                </a>
+                                <a href="tel:{% if site_settings %}{{ site_settings.phone }}{% else %}0505584553{% endif %}" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-phone me-2"></i> Call Us
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 d-none d-lg-block">
+                            <div class="cta-image-container">
+                                {% if banners.computers_cta and banners.computers_cta.image %}
+                                    <img src="{{ banners.computers_cta.image.url }}" alt="Network Services" class="img-fluid rounded-end">
+                                {% else %}
+                                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Network Services" class="img-fluid rounded-end">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decorative elements -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style="z-index: 0; pointer-events: none;">
+        <div class="position-absolute" style="top: 10%; left: 5%; width: 100px; height: 100px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+        <div class="position-absolute" style="top: 50%; right: 10%; width: 150px; height: 150px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+        <div class="position-absolute" style="bottom: 10%; left: 15%; width: 80px; height: 80px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+    </div>
+</section>
+{% endblock %}

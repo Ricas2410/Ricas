@@ -1,0 +1,22 @@
+NEW CONTACT FORM SUBMISSION
+
+You have received a new message from the contact form on your website.
+
+CONTACT DETAILS:
+Name: {{ name }}
+Email: {{ email }}
+{% if phone %}Phone: {{ phone }}{% endif %}
+Subject: {{ subject }}
+Date: {% now "F j, Y, g:i a" %}
+
+MESSAGE:
+{{ message }}
+
+ACTION REQUIRED:
+Please respond to this inquiry within 24-48 business hours.
+
+To reply directly, email {{ email }} with subject: RE: {{ subject }}
+
+---
+This email was sent from the contact form on {{ site_name }} ({{ site_url }}).
+To manage all inquiries, please log in to the admin dashboard.

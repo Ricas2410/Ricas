@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} | Cybersecurity Services | {{ block.super }}{% endblock %}
+
+{% block content %}
+<!-- Service Hero Section -->
+<section class="hero" style="background: linear-gradient(135deg, rgba(14, 168, 206, 0.4) 0%, rgba(0, 119, 182, 0.4) 100%), url('{% if banners.cybersecurity_hero and banners.cybersecurity_hero.image %}{{ banners.cybersecurity_hero.image.url }}{% else %}https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80{% endif %}') center center/cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 style="color: #f19c07;">{{ service.title }}</h1>
+                <p class="lead">Comprehensive cybersecurity solutions for your needs</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Details -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm mb-4" style="border-top: 4px solid var(--primary-color);">
+                    {% if service.image %}
+                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="{{ service.title }}">
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <h2 class="card-title mb-4" style="color: var(--primary-color);">About This Service</h2>
+                        <p class="card-text">{{ service.description|linebreaks }}</p>
+
+                        {% if service.features.all %}
+                        <h3 class="mt-5 mb-3" style="color: var(--primary-color);">Key Features</h3>
+                        <div class="row">
+                            {% for feature in service.features.all %}
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas {% if feature.icon %}{{ feature.icon }}{% else %}fa-check-circle{% endif %} fa-2x me-3" style="color: var(--accent-color);"></i>
+                                    </div>
+                                    <div>
+                                        <h5 style="color: var(--primary-color);">{{ feature.title }}</h5>
+                                        <p>{{ feature.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <div class="d-grid gap-2 mt-4">
+                            <a href="{% url 'contact' %}?service_type=cybersecurity" class="btn btn-primary btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i> Request a Consultation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Section -->
+                <div class="card border-0 shadow-sm mb-4" style="border-top: 4px solid var(--accent-color);">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4" style="color: var(--primary-color);">Benefits</h3>
+
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <i class="fas fa-check-circle me-2" style="color: var(--accent-color);"></i>
+                                Enhanced protection against cyber threats
+                            </li>
+                            <li class="mb-3">
+                                <i class="fas fa-check-circle me-2" style="color: var(--accent-color);"></i>
+                                Reduced risk of data breaches
+                            </li>
+                            <li class="mb-3">
+                                <i class="fas fa-check-circle me-2" style="color: var(--accent-color);"></i>
+                                Compliance with data protection regulations
+                            </li>
+                            <li class="mb-3">
+                                <i class="fas fa-check-circle me-2" style="color: var(--accent-color);"></i>
+                                Peace of mind for you and your stakeholders
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle me-2" style="color: var(--accent-color);"></i>
+                                Expert support from our security professionals
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Service Overview -->
+                <div class="card border-0 shadow-sm mb-4" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4" style="color: var(--primary-color);">Service Overview</h3>
+
+                        <div class="mb-3">
+                            <h5><i class="fas fa-shield-alt me-2" style="color: var(--accent-color);"></i> Service Type</h5>
+                            <p>Cybersecurity</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5><i class="fas fa-users me-2" style="color: var(--accent-color);"></i> Ideal For</h5>
+                            <p>Schools, Homes, Small Businesses</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5><i class="fas fa-clock me-2" style="color: var(--accent-color);"></i> Implementation Time</h5>
+                            <p>Varies based on complexity</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5><i class="fas fa-hand-holding-usd me-2" style="color: var(--accent-color);"></i> Pricing</h5>
+                            <p>Custom quote based on requirements</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Us -->
+                <div class="card border-0 shadow-sm" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4" style="color: var(--primary-color);">Get Started</h3>
+                        <p>Ready to enhance your cybersecurity? Contact us for a free consultation.</p>
+                        <div class="d-grid">
+                            <a href="{% url 'contact' %}?service_type=cybersecurity" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-2"></i> Contact Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Services -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5" style="color: var(--primary-color);">Other Cybersecurity Services</h2>
+
+        <div class="row">
+            {% for related_service in related_services %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm" style="border-top: 4px solid var(--primary-color);">
+                    {% if related_service.image %}
+                    <img src="{{ related_service.image.url }}" class="card-img-top" alt="{{ related_service.title }}">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="{{ related_service.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: var(--primary-color);">{{ related_service.title }}</h5>
+                        <p class="card-text">{{ related_service.description|truncatewords:15 }}</p>
+                        <a href="{% url 'cybersecurity_service_detail' related_service.slug %}" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-info-circle me-2"></i> Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No related services available.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'cybersecurity_services' %}" class="btn btn-primary">
+                <i class="fas fa-th-list me-2"></i> View All Services
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 position-relative bg-white">
+    <div class="container py-4" data-aos="fade-up" style="position: relative; z-index: 1;">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="cta-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 py-4 px-lg-5 text-center text-lg-start">
+                            <h2 class="mb-4" style="color: #f19c07;">Ready to Secure Your Digital Assets?</h2>
+                            <p class="lead mb-4 text-dark">Contact us today to discuss your cybersecurity needs and get a free consultation.</p>
+                            <div class="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start gap-3">
+                                <a href="{% url 'contact' %}?service_type=cybersecurity" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i> Contact Us
+                                </a>
+                                <a href="tel:{% if site_settings %}{{ site_settings.phone }}{% else %}0505584553{% endif %}" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-phone me-2"></i> Call Us
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 d-none d-lg-block">
+                            <div class="cta-image-container">
+                                {% if banners.cybersecurity_cta and banners.cybersecurity_cta.image %}
+                                    <img src="{{ banners.cybersecurity_cta.image.url }}" alt="Cybersecurity" class="img-fluid rounded-end">
+                                {% else %}
+                                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cybersecurity" class="img-fluid rounded-end">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decorative elements -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style="z-index: 0; pointer-events: none;">
+        <div class="position-absolute" style="top: 10%; left: 5%; width: 100px; height: 100px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+        <div class="position-absolute" style="top: 50%; right: 10%; width: 150px; height: 150px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+        <div class="position-absolute" style="bottom: 10%; left: 15%; width: 80px; height: 80px; background-color: rgba(14, 168, 206, 0.05); border-radius: 50%;"></div>
+    </div>
+</section>
+{% endblock %}
